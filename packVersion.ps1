@@ -16,12 +16,9 @@ Write-Host $checksum
 Write-Host $checksum64
 
 (Get-Content tools/chocolateyinstall.ps1) `
-    -replace '#REPLACE_VERSION#', $version |
+    -replace '#REPLACE_VERSION#', $version `
+    -replace '#REPLACE_BETA_VERSION#', $releaseVersion |
   Out-File tools/chocolateyinstall.ps1
-
-(Get-Content tools/chocolateyinstall.ps1) `
-  -replace '#REPLACE_BETA_VERSION#', $releaseVersion |
-Out-File tools/chocolateyinstall.ps1
 
 (Get-Content tools/chocolateyinstall.ps1) `
     -replace '#REPLACE_CHECKSUM#', $checksum `
@@ -30,17 +27,14 @@ Out-File tools/chocolateyinstall.ps1
 
 (Get-Content rainmeter-beta.nuspec) `
     -replace '#REPLACE_VERSION#', $version |
-Out-File operagx.nuspec
+Out-File rainmeter-beta.nuspec
 
 choco pack
 
 (Get-Content tools/chocolateyinstall.ps1) `
-    -replace $version, '#REPLACE_VERSION#' |
+    -replace $version, '#REPLACE_VERSION#' `
+    -replace $releaseVersion, '#REPLACE_BETA_VERSION# |
   Out-File tools/chocolateyinstall.ps1
-
-(Get-Content tools/chocolateyinstall.ps1) `
-  -replace $releaseVersion, '#REPLACE_BETA_VERSION#' |
-Out-File tools/chocolateyinstall.ps1
 
 (Get-Content tools/chocolateyinstall.ps1) `
     -replace $checksum, '#REPLACE_CHECKSUM#' `
