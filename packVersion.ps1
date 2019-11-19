@@ -33,7 +33,7 @@ choco pack
 
 (Get-Content tools/chocolateyinstall.ps1) `
     -replace $version, '#REPLACE_VERSION#' `
-    -replace $releaseVersion, '#REPLACE_BETA_VERSION# |
+    -replace $releaseVersion, '#REPLACE_BETA_VERSION#' |
   Out-File tools/chocolateyinstall.ps1
 
 (Get-Content tools/chocolateyinstall.ps1) `
